@@ -75,10 +75,15 @@
     </style>
 </head>
 <body>
+    <audio id="miAudio">
+        <source src="A:\Documentos\HTML\audio2.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+    
     <div class="title">Para ti, Jazmin</div>
     <div class="intro" id="intro">
         Aquel tiempo no fue olvido, ni silencio, ni desinterés, fue el peso de cada recuerdo, el eco de cada palabra que no supe sostener, la sombra de cada decisión que nos alejó. No escribí antes, no porque no pensara en ti, sino porque cada línea habría sido un reflejo de mi propia herida, de mi arrepentimiento aún abierto. Hoy estas palabras llegan no desde la nostalgia que arrastra, sino desde la calma que entiende.<br><br>
-        Si ahora te hice este pequeño poema, es porque mi sombra ya no pesa en mis palabras.
+        Si ahora te hice este pequeño poema, es porque mi sombra ya no pesa en mis 
     </div>
     <button class="btn" id="btnPoema" onclick="mostrarPoema()">Leer Poema</button>
     <div class="poema-container" id="poema-container"></div>
@@ -90,7 +95,11 @@
             document.getElementById("btnPoema").setAttribute("onclick", "volverAInicio()");
             document.getElementById("poema-container").scrollTop = 0;
             
+            let audio = document.getElementById("miAudio");
+            audio.play(); // Reproducir audio
+            
             let poemaTexto = `Aún te extraño\n\nTe extraño.\nY no lo digo por costumbre,\nni porque la soledad aprieta en las madrugadas.\nLo digo porque en cada rincón del día\nsigues siendo mi sombra.\n\nFui un estúpido, lo sé,\ncreí que el amor resistía cualquier tormenta,\nque se quedaría inmóvil aunque lo agitara,\npero el amor también se cansa,\ntambién se agrieta,\ntambién se marcha cuando lo olvidas.\n\nCometí el error,\nese que pesa en mi espalda,\nese que se burla cuando cierro los ojos,\nporque en cada imagen que mi mente traza\nsigues ahí,\ncomo un eco, como un faro,\ncomo la verdad que no supe sostener.\n\nY ahora soy yo quien se está muriendo,\nno físicamente, no aún,\npero dime, ¿qué es estar vivo sin tu voz?\nsin tus risas iluminando mis días,\nsin la certeza de encontrarte al final del camino.\n\nDicen que el tiempo lo cura todo,\nque alguien más llegará,\nque un día despertaré y no dolerás.\nPero si supieran,\nsi tan solo supieran…\nQue yo no quiero otro amanecer sin ti,\nque mis pasos aún buscan tus huellas,\nque mi corazón insiste en pronunciar tu nombre\naunque el mundo me pida silencio.\n\nTú me sacaste de la oscuridad,\nme enseñaste a amar sin miedo,\ny yo, torpe, ciego,\ndejé que la vida nos hiciera trizas.\n\nNo vengo a pedirte que volvamos al ayer,\nporque el ayer es un espejo roto.\nVengo a decirte\nque aún te amo,\nque aún te elijo,\ny si en algún rincón de tu alma\nqueda un espacio donde pueda quedarme,\ndéjame entrar.\n\nNo para prometerte mundos perfectos,\npero sí para construir contigo\nun amor nuevo,\nmás sabio, más fuerte,\nun amor sin miedo a la tormenta,\nporque ya aprendimos\na bailar bajo la lluvia.\n\nTodo lo mío es tuyo,\nmis risas, mis silencios,\nmis horas sin prisa y mis dudas eternas.\nTe cedo mi sombra, mis pasos, mi cielo,\nporque sin ti, amor,\nya nada es mío.\n\nJazmín.`.split('\n');
+
             
             let contenedor = document.getElementById("poema-container");
             contenedor.innerHTML = "";
@@ -104,6 +113,9 @@
         }
 
         function volverAInicio() {
+            let audio = document.getElementById("miAudio");
+            audio.pause();
+            audio.currentTime = 0; // Reiniciar audio
             location.reload();
         }
     </script>
