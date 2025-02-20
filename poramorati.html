@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poema Dinámico</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #F8EDEB;
+            color: #5D4037;
+            text-align: center;
+        }
+        .intro {
+            max-width: 600px;
+            font-size: 1.2em;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 1.5s ease-out forwards;
+        }
+        .title {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #8D6E63;
+            margin-bottom: 20px;
+            animation: fadeIn 2s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .poema-container {
+            display: none;
+            max-width: 500px;
+            padding: 20px;
+            background: #FFEBE9;
+            color: #4E342E;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+            text-align: center;
+            overflow-y: auto;
+            max-height: 80vh;
+        }
+        .linea {
+            opacity: 0;
+            animation: fadeLine 0.7s ease-out forwards;
+            display: block;
+        }
+        @keyframes fadeLine {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            background-color: #D7A69E;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #B47C74;
+        }
+    </style>
+</head>
+<body>
+    <div class="title">Para ti, Jazmin</div>
+    <div class="intro" id="intro">
+        Aquel tiempo no fue olvido, ni silencio, ni desinterés, fue el peso de cada recuerdo, el eco de cada palabra que no supe sostener, la sombra de cada decisión que nos alejó. No escribí antes, no porque no pensara en ti, sino porque cada línea habría sido un reflejo de mi propia herida, de mi arrepentimiento aún abierto. Hoy estas palabras llegan no desde la nostalgia que arrastra, sino desde la calma que entiende.<br><br>
+        Si ahora te hice este pequeño poema, es porque mi sombra ya no pesa en mis palabras.
+    </div>
+    <button class="btn" id="btnPoema" onclick="mostrarPoema()">Leer Poema</button>
+    <div class="poema-container" id="poema-container"></div>
+    <script>
+        function mostrarPoema() {
+            document.getElementById("intro").style.display = "none";
+            document.getElementById("poema-container").style.display = "block";
+            document.getElementById("btnPoema").textContent = "Volver atrás";
+            document.getElementById("btnPoema").setAttribute("onclick", "volverAInicio()");
+            document.getElementById("poema-container").scrollTop = 0;
+            
+            let poemaTexto = `Aún te extraño\n\nTe extraño.\nY no lo digo por costumbre,\nni porque la soledad aprieta en las madrugadas.\nLo digo porque en cada rincón del día\nsigues siendo mi sombra.\n\nFui un estúpido, lo sé,\ncreí que el amor resistía cualquier tormenta,\nque se quedaría inmóvil aunque lo agitara,\npero el amor también se cansa,\ntambién se agrieta,\ntambién se marcha cuando lo olvidas.\n\nCometí el error,\nese que pesa en mi espalda,\nese que se burla cuando cierro los ojos,\nporque en cada imagen que mi mente traza\nsigues ahí,\ncomo un eco, como un faro,\ncomo la verdad que no supe sostener.\n\nY ahora soy yo quien se está muriendo,\nno físicamente, no aún,\npero dime, ¿qué es estar vivo sin tu voz?\nsin tus risas iluminando mis días,\nsin la certeza de encontrarte al final del camino.\n\nDicen que el tiempo lo cura todo,\nque alguien más llegará,\nque un día despertaré y no dolerás.\nPero si supieran,\nsi tan solo supieran…\nQue yo no quiero otro amanecer sin ti,\nque mis pasos aún buscan tus huellas,\nque mi corazón insiste en pronunciar tu nombre\naunque el mundo me pida silencio.\n\nTú me sacaste de la oscuridad,\nme enseñaste a amar sin miedo,\ny yo, torpe, ciego,\ndejé que la vida nos hiciera trizas.\n\nNo vengo a pedirte que volvamos al ayer,\nporque el ayer es un espejo roto.\nVengo a decirte\nque aún te amo,\nque aún te elijo,\ny si en algún rincón de tu alma\nqueda un espacio donde pueda quedarme,\ndéjame entrar.\n\nNo para prometerte mundos perfectos,\npero sí para construir contigo\nun amor nuevo,\nmás sabio, más fuerte,\nun amor sin miedo a la tormenta,\nporque ya aprendimos\na bailar bajo la lluvia.\n\nTodo lo mío es tuyo,\nmis risas, mis silencios,\nmis horas sin prisa y mis dudas eternas.\nTe cedo mi sombra, mis pasos, mi cielo,\nporque sin ti, amor,\nya nada es mío.\n\nJazmín.`.split('\n');
+            
+            let contenedor = document.getElementById("poema-container");
+            contenedor.innerHTML = "";
+            poemaTexto.forEach((linea, index) => {
+                let p = document.createElement("p");
+                p.textContent = linea;
+                p.classList.add("linea");
+                p.style.animationDelay = `${index * 0.5}s`;
+                contenedor.appendChild(p);
+            });
+        }
+
+        function volverAInicio() {
+            location.reload();
+        }
+    </script>
+</body>
+</html>
